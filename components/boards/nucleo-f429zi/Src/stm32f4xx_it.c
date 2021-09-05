@@ -1,33 +1,42 @@
 /**
   ******************************************************************************
-  * @file    stm32f4xx_it.c
-  * @author  Ac6
-  * @version V1.0
-  * @date    02-Feb-2015
-  * @brief   Default Interrupt Service Routines.
+  * @file    LwIP/LwIP_HTTP_Server_Netconn_RTOS/Src/stm32f4xx_it.c 
+  * @author  MCD Application Team
+  * @brief   Main Interrupt Service Routines.
+  *          This file provides template for all exceptions handler and 
+  *          peripherals interrupt service routine.
   ******************************************************************************
-*/
+  * @attention
+  *
+  * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>
+  *
+  * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
+  * You may not use this file except in compliance with the License.
+  * You may obtain a copy of the License at:
+  *
+  *        http://www.st.com/software_license_agreement_liberty_v2
+  *
+  * Unless required by applicable law or agreed to in writing, software 
+  * distributed under the License is distributed on an "AS IS" BASIS, 
+  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  * See the License for the specific language governing permissions and
+  * limitations under the License.
+  *
+  ******************************************************************************
+  */
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f4xx_hal.h"
-#include "stm32f4xx.h"
-#ifdef USE_FREERTOS_SYSTICK     //USE_RTOS_SYSTICK
-#include "FreeRTOS.h"
-#endif
 #include "stm32f4xx_it.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-#ifdef ENABLE_ETHERNET
-extern ETH_HandleTypeDef EthHandle;
-#endif
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 
 /******************************************************************************/
-/*            	  	    Processor Exceptions Handlers                         */
+/*            Cortex-M4 Processor Exceptions Handlers                         */
 /******************************************************************************/
 
 /**
@@ -37,8 +46,6 @@ extern ETH_HandleTypeDef EthHandle;
   */
 void NMI_Handler(void)
 {
-    while (1){
-  }
 }
 
 /**
@@ -51,7 +58,6 @@ void HardFault_Handler(void)
   /* Go to infinite loop when Hard Fault exception occurs */
   while (1)
   {
-
   }
 }
 
@@ -101,24 +107,20 @@ void UsageFault_Handler(void)
   */
 void DebugMon_Handler(void)
 {
-/* Go to infinite loop when Usage Fault exception occurs */
-  while (1)
-  {
-  }
 }
 
 /**
-  * @brief  This function handles SysTick Handler, but only if no RTOS defines it.
+  * @brief  This function handles SysTick Handler.
   * @param  None
   * @retval None
   */
 void SysTick_Handler(void)
 {
-	HAL_IncTick();
-	HAL_SYSTICK_IRQHandler();
+  HAL_IncTick();
+  HAL_SYSTICK_IRQHandler();
 
 #ifdef USE_FREERTOS_SYSTICK
-	xPortSysTickHandler();
+  xPortSysTickHandler();
 #endif
 }
 
@@ -130,18 +132,6 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
-  * @brief  This function handles Ethernet interrupt request.
-  * @param  None
-  * @retval None
-  */
-void ETH_IRQHandler(void)
-{
-#ifdef ENABLE_ETHERNET
-  HAL_ETH_IRQHandler(&EthHandle);
-#endif
-}
-
-/**
   * @brief  This function handles PPP interrupt request.
   * @param  None
   * @retval None
@@ -150,4 +140,4 @@ void ETH_IRQHandler(void)
 {
 }*/
 
-
+/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

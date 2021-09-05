@@ -27,9 +27,9 @@ CPU_MODEL=STM32F429xx
 # LIBRARY SOURCES
 
 BRD_PATH=$(SOURCELIB_ROOT)/components/boards/nucleo-f429zi
-HAL_PATH=$(SOURCELIB_ROOT)/components/hal/stm32/STM32F4xx_HAL_Driver
+HAL_PATH=$(SOURCELIB_ROOT)/components/hal/STM32F4xx_HAL_Driver
 UTIL_PATH=$(SOURCELIB_ROOT)/components/util
-CMSIS_PATH=$(SOURCELIB_ROOT)/components/hal/stm32/CMSIS/Include
+CMSIS_PATH=$(SOURCELIB_ROOT)/components/hal/CMSIS/Include
 CMSISRTOS_PATH=$(SOURCELIB_ROOT)/components/os/CMSIS_RTOS
 ETHERNET_PATH=$(BRD_PATH)/netif
 
